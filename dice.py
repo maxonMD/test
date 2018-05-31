@@ -36,10 +36,11 @@ def getbet(amount, bet):
         elif bet == 0:
             print("goodbye")
             exit(0)
-        elif bet < 0 or bet > amount:
+        elif bet > 0 or bet < amount:
             return bet
     except ValueError:
         print("please enter a valid number")
+
 
 def gethighlow(c):
     if c == "s" or c == "h" or c == "l":
@@ -48,10 +49,11 @@ def gethighlow(c):
         print("You have entered in an invalid character")
 
 def game():
+    amount = 100
     while True:
+        bet = int(input("Place your bet "))
         try:
-            amount = 100
-            bet = int(input("Place your bet "))
+            getbet(amount, bet)
             c = input("Enter H for high, S for sevens and L for low: ").lower()
             if amount <= 0:
                 print("You are out of money please go get some more")
@@ -62,7 +64,7 @@ def game():
                 den = False
                 while not den:
                     gethighlow(c)
-                    while getbet(amount, bet) != 0 and amount > 0:
+                    while getbet(amount, bet) != 0 and amount >= 0:
                         roll1 = getroll()
                         roll2 = getroll()
                         total = (roll1 + roll2)
